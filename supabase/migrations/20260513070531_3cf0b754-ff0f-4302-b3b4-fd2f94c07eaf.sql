@@ -1,0 +1,1 @@
+ALTER TABLE public.credits ADD COLUMN IF NOT EXISTS paid_amount numeric NOT NULL DEFAULT 0;

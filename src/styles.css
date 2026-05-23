@@ -1,0 +1,162 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", monospace;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Telegram-like light surface */
+  --background: oklch(0.98 0.003 247);
+  --foreground: oklch(0.18 0.01 247);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 247);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 247);
+
+  /* Telegram blue */
+  --brand: oklch(0.62 0.16 245);
+  --brand-soft: oklch(0.62 0.16 245 / 0.12);
+
+  --income: oklch(0.62 0.17 150);
+  --expense: oklch(0.6 0.21 25);
+
+  --primary: var(--brand);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.96 0.005 247);
+  --secondary-foreground: oklch(0.2 0.01 247);
+
+  --muted: oklch(0.96 0.005 247);
+  --muted-foreground: oklch(0.55 0.015 247);
+
+  --accent: oklch(0.95 0.01 245);
+  --accent-foreground: var(--brand);
+
+  --destructive: var(--expense);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.005 247);
+  --input: oklch(0.96 0.005 247);
+  --ring: var(--brand);
+}
+
+.dark {
+  --background: oklch(0.16 0.01 250);
+  --foreground: oklch(0.97 0.005 247);
+
+  --card: oklch(0.21 0.012 250);
+  --card-foreground: oklch(0.97 0.005 247);
+  --popover: oklch(0.22 0.012 250);
+  --popover-foreground: oklch(0.97 0.005 247);
+
+  --brand: oklch(0.72 0.15 245);
+  --brand-soft: oklch(0.72 0.15 245 / 0.18);
+
+  --primary: var(--brand);
+  --primary-foreground: oklch(0.12 0 0);
+
+  --secondary: oklch(0.26 0.01 250);
+  --secondary-foreground: oklch(0.97 0 0);
+
+  --muted: oklch(0.26 0.01 250);
+  --muted-foreground: oklch(0.7 0.01 250);
+
+  --accent: oklch(0.28 0.015 250);
+  --accent-foreground: var(--brand);
+
+  --border: oklch(0.3 0.01 250);
+  --input: oklch(0.26 0.01 250);
+  --ring: var(--brand);
+}
+
+@layer base {
+  :root {
+    --tg-safe-top: env(safe-area-inset-top, 0px);
+    --tg-safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    /* Дополнительный отступ под верхнюю панель Telegram (кнопки Закрыть/···) */
+    padding-top: calc(var(--tg-safe-top) + 32px);
+  }
+}
+
+@layer utilities {
+  .pt-safe {
+    padding-top: var(--tg-safe-top);
+  }
+  .pb-safe {
+    padding-bottom: var(--tg-safe-bottom);
+  }
+}
+
+@layer utilities {
+  .text-brand {
+    color: var(--brand);
+  }
+  .bg-brand {
+    background-color: var(--brand);
+  }
+  .bg-brand-soft {
+    background-color: var(--brand-soft);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .text-income {
+    color: var(--income);
+  }
+  .text-expense {
+    color: var(--expense);
+  }
+  .bg-income-soft {
+    background-color: color-mix(in oklab, var(--income) 14%, transparent);
+  }
+  .bg-expense-soft {
+    background-color: color-mix(in oklab, var(--expense) 14%, transparent);
+  }
+}
